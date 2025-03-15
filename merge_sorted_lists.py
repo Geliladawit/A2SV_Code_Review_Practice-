@@ -1,19 +1,29 @@
 import unittest
 
-def merge_sorted_lists(list1, list2):
+def merge_sorted_lists(sorted_list1, sorted_list2):
+    """
+    Merges two sorted lists into a single sorted list.
+
+    Args:
+        sorted_list1: The first sorted list.
+        sorted_list2: The second sorted list.
+
+    Returns:
+        A new sorted list containing all elements from sorted_list1 and sorted_list2.
+    """
     merged_list = []
     i, j = 0, 0
 
-    while i < len(list1) and j < len(list2):
-        if list1[i] < list2[j]:
-            merged_list.append(list1[i])
+    while i < len(sorted_list1) and j < len(sorted_list2):
+        if sorted_list1[i] < sorted_list2[j]:
+            merged_list.append(sorted_list1[i])
             i += 1
         else:
-            merged_list.append(list2[j])
+            merged_list.append(sorted_list2[j])
             j += 1
 
-    merged_list.extend(list1[i:])
-    merged_list.extend(list2[j:])
+    merged_list.extend(sorted_list1[i:])
+    merged_list.extend(sorted_list2[j:])
 
     return merged_list
 
@@ -37,7 +47,7 @@ class TestMergeSortedLists(unittest.TestCase):
         self.assertEqual(merge_sorted_lists([1, 2, 2, 3], [2, 3, 3, 4]), [1, 2, 2, 2, 3, 3, 3, 4])
 
     def test_identical_lists(self):
-        self.assertEqual(merge_sorted_lists([1, 2, 3], [1, 2, 3]), [1, 2, 1, 2, 3, 3]) # corrected
+        self.assertEqual(merge_sorted_lists([1, 2, 3], [1, 2, 3]), [1, 1, 2, 2, 3, 3]) # corrected
 
     def test_negative_numbers(self):
         self.assertEqual(merge_sorted_lists([-3, -1, 0], [-2, 1, 2]), [-3, -2, -1, 0, 1, 2])
